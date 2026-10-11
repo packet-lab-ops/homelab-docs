@@ -10,7 +10,7 @@ Practice-only lab for CompTIA A+, Network+, and Security+.
 - TP-Link Archer A7 running OpenWrt
 
 ## Architecture
-(diagram image or description)
+
 
 ## Build log
 - 2026-10: 
