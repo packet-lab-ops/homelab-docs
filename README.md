@@ -5,7 +5,7 @@ Practice lab for CompTIA A+, Network+, and Security+.
 - Dell Inspiron 23 AIO (Proxmox VE host)
 - TP-Link Archer A7 running OpenWrt
 
-## Architecture
+## Network Architecture
 
 Logical view: the OpenWrt router segments LAN, Guest, and an isolated lab network. Guest and lab egress through a Mullvad WireGuard tunnel.
 
