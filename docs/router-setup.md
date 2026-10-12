@@ -9,7 +9,7 @@ The router is a TP-Link Archer A7 (V5) running OpenWrt. It has one WAN port conn
 
 ## The Three Networks
 
-- **Family** (LAN): Everyday devices. It's the only network that can open the router's admin page (LuCI) or SSH into it.
+- **Family**: (LAN): Everyday devices. It's the only network that can open the router's admin page (LuCI) or SSH into it.
 - **Guest**: Visitors. They can reach the internet through a VPN tunnel but can't see the family network or the router's admin page.
 - **Lab**: My practice network on its own VLAN and its own Wi-Fi name. It goes through the same VPN tunnel and is isolated from the family and guest networks.
 
