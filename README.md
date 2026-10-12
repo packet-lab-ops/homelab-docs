@@ -19,5 +19,5 @@ Practice-only lab for CompTIA A+, Network+, and Security+.
 
 
 ## Build log
-- 2026-10-12: Home networking is finished. My home setup now has three separate networks: Family, Guest, and Lab.
-- 2026-10-11: Updated DNS from Mullvad to Quad9 [docs] (dns-migration.md)
+- 2026-10-12: Home network segmentation complete. Lab host (Proxmox) setup pending. My home setup now has three separate networks: Family, Guest, and Lab. [Router setup](docs/router-setup.md)
+- 2026-10-11: Updated DNS from Mullvad to Quad9  [DNS migration](docs/dns-migration.md)
