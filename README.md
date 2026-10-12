@@ -7,19 +7,19 @@ Practice lab for CompTIA A+, Network+, and Security+.
 
 ## Architecture
 
+Logical view: the OpenWrt router segments LAN, Guest, and an isolated lab network. Guest and lab egress through a Mullvad WireGuard tunnel.
+
 ```mermaid
-flowchart LR
-  ISP[ISP] --> WAN[WAN: port 1, VLAN 2]
-  WAN --> R[Archer A7 running OpenWrt]
-  R --> FAM[Family LAN: ports 2-4, VLAN 1<br/>192.168.1.0/24]
-  R --> GUEST[Guest Wi-Fi<br/>192.168.10.0/24]
-  R --> LAB[Lab: port 5, VLAN 3, and LAB Wi-Fi<br/>192.168.20.0/24]
-  GUEST --> VPN[Mullvad WireGuard tunnel]
+flowchart TD
+  ISP["ISP / CM600 modem"] --> R["OpenWrt router"]
+  R --> LAN["LAN 192.168.1.0/24"]
+  R --> GUEST["Guest 192.168.10.0/24<br/>client isolation on"]
+  R --> LAB["lab 192.168.20.0/24<br/>Proxmox host 192.168.20.10"]
+  LAN -->|"router admin access"| R
+  LAN -->|"direct, outside tunnel"| NET["Internet"]
+  GUEST --> VPN["Mullvad tunnel"]
   LAB --> VPN
-  VPN --> NET[Internet]
-  LAB -. blocked .-> FAM
-  GUEST -. blocked .-> FAM
-  LAB -. blocked .-> GUEST
+  VPN --> NET
 ```
 
 ## What This Shows
