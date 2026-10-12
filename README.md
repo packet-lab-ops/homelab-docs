@@ -11,6 +11,12 @@ Practice-only lab for CompTIA A+, Network+, and Security+.
 
 ## Architecture
 
+## Documentation
+
+- [Router setup](docs/router-setup.md)
+- [DNS migration](docs/dns-migration.md)
+
+
 
 ## Build log
 - 2026-10-12: Home networking is finished. My home setup now has three separate networks: Family, Guest, and Lab.
