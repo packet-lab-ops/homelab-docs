@@ -1,6 +1,6 @@
-# homelab-docs
+# Enterprise Hybrid Homelab & Network Operations
+Hands-on infrastructure lab covering network segmentation, Linux KVM virtualization, and Active Directory Domain Services.
 
-Multi-OS Systems Administration, Virtualization & Network Operations Lab
 
 ![Enterprise Lab Overview](docs/05-enterprise-lab-overview.png)
 
