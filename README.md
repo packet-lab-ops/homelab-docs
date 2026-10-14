@@ -14,11 +14,30 @@ flowchart TD
   ISP["ISP / CM600 modem"] --> R["OpenWrt router"]
   R --> LAN["LAN 192.168.1.0/24"]
   R --> GUEST["Guest 192.168.10.0/24<br/>client isolation on"]
-  R --> LAB["lab 192.168.20.0/24<br/>Proxmox host 192.168.20.10"]
+  R --> LAB_NET["Lab VLAN 192.168.20.0/24"]
+
+  subgraph AIO["Dell Inspiron 23 AIO (Fedora Host)"]
+    direction TB
+    HOST["Host OS: Fedora Workstation<br/>KVM / QEMU / libvirt"]
+    VIRBR0["Virtual Bridge: virbr0 (NAT)<br/>192.168.122.0/24"]
+    
+    subgraph VMS["Guest Virtual Machines"]
+      DC["WinServer2022-DC<br/>192.168.122.200 (Static)<br/>AD DS & DNS (homelab.local)"]
+      CLIENT["WinClient01<br/>192.168.122.x (DHCP)<br/>Windows 11 Enterprise (Domain Joined)"]
+      LINUX["server01<br/>192.168.122.x (DHCP)<br/>Ubuntu Server 24.04 LTS (OpenSSH)"]
+    end
+
+    HOST --- VIRBR0
+    VIRBR0 --- DC
+    VIRBR0 --- CLIENT
+    VIRBR0 --- LINUX
+  end
+
+  LAB_NET --> HOST
   LAN -->|"router admin access"| R
   LAN -->|"direct, outside tunnel"| NET["Internet"]
   GUEST --> VPN["Mullvad tunnel"]
-  LAB --> VPN
+  LAB_NET --> VPN
   VPN --> NET
 ```
 
