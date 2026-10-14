@@ -1,5 +1,6 @@
 # homelab-docs
-Practice lab for CompTIA A+, Network+, and Security+.
+
+Multi-OS Systems Administration, Virtualization & Network Operations Lab
 
 ![Enterprise Lab Overview](docs/05-enterprise-lab-overview.png)
 
