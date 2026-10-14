@@ -2,7 +2,7 @@
 Practice lab for CompTIA A+, Network+, and Security+.
 
 ## Hardware
-- Dell Inspiron 23 AIO (Proxmox VE host)
+- Dell Inspiron 23 AIO (Fedora Workstation host / KVM hypervisor)
 - TP-Link Archer A7 running OpenWrt
 
 ## Network Architecture
