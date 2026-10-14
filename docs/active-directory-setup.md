@@ -65,6 +65,7 @@ Subnet Mask: 255.255.255.0
 Default Gateway: 192.168.122.1
 Preferred DNS: 127.0.0.1 (loopback to internal AD DNS)
 Alternate DNS: 1.1.1.1 (upstream forwarder)
+
 Interface Reset:
 cmd
 netsh interface set interface "Ethernet" admin=disable
@@ -79,31 +80,33 @@ Outbound ICMP/DNS verified via ping 1.1.1.1 and nslookup.
 A. Client DNS Precedence
 For a Windows workstation to locate Domain Controllers, its primary DNS must query the Active Directory DNS server hosting the _ldap._tcp.dc._msdcs.homelab.local SRV records:
 
-In WinClient01 IPv4 Properties (ncpa.cpl), configured Preferred DNS server: 192.168.122.200.
-Validated directory record discovery:
+- In WinClient01 IPv4 Properties (ncpa.cpl), configured Preferred DNS server: 192.168.122.200.
+- Validated directory record discovery:
 cmd
 nslookup homelab.local
 
 B. Machine Renaming & Domain Join
 
-Renamed factory machine identifier to standard workstation naming convention: CLIENT01.
-Initiated domain join via sysdm.cpl -> Member of Domain: homelab.local.
-Authenticated against DC01 using Domain Administrator credentials.
-Received domain join confirmation: "Welcome to the homelab.local domain."
-Restarted workstation and executed initial domain logon under HOMELAB\Administrator.
+- Renamed factory machine identifier to standard workstation naming convention: CLIENT01.
+- Initiated domain join via sysdm.cpl -> Member of Domain: homelab.local.
+- Authenticated against DC01 using Domain Administrator credentials.
+- Received domain join confirmation: "Welcome to the homelab.local domain."
+- Restarted workstation and executed initial domain logon under HOMELAB\Administrator.
 
 ## 4. Verification & Screenshots
 
-Screenshot	Description	File Path
-02	Initial Server Manager baseline dashboard	../screenshots/02-server-manager-baseline.png
-04	Active Directory domain membership verified in System Properties / ADUC	../screenshots/04-domain-joined-properties.png
-05	Integrated enterprise lab overview (DC, Client, Linux Monitor)	../screenshots/05-enterprise-lab-overview.png
+Initial Server Manager baseline dashboard	![Windows Server Installation Step 1](windows_server_install_1.png)
+
+Active Directory domain membership verified in System Properties ![Active Directory Computer Object](04-domain-computer-object.png)
+
+Integrated enterprise lab overview (DC, Client, Linux Monitor)	![Enterprise Lab Overview](05-enterprise-lab-overview.png)
+
 
 ## 5. Technical Competencies Demonstrated
 
-Identity & Access Management: AD DS forest deployment, domain join operations, domain credential delegation.
-Enterprise Networking: Static IP scheme planning, TCP/IP stack configuration, DNS hierarchy, and APIPA fault isolation.
-Incident Troubleshooting: Analyzing duplicate IP conflicts via ipconfig /all, root-cause determination, and interface remediation using native CLI tools.
+- Identity & Access Management: AD DS forest deployment, domain join operations, domain credential delegation.
+- Enterprise Networking: Static IP scheme planning, TCP/IP stack configuration, DNS hierarchy, and APIPA fault isolation.
+- Incident Troubleshooting: Analyzing duplicate IP conflicts via ipconfig /all, root-cause determination, and interface remediation using native CLI tools.
 
 
 
