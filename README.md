@@ -1,6 +1,5 @@
 # Enterprise Hybrid Homelab & Network Operations
-Hands-on infrastructure lab covering network segmentation, Linux KVM virtualization, and Active Directory Domain Services.
-
+Hands-on infrastructure and operations lab covering physical network segmentation, Linux KVM virtualization, Active Directory Domain Services, continuous synthetic monitoring, OT/ICS telemetry, and service desk incident management.
 
 ![Enterprise Lab Overview](docs/images/05-enterprise-lab-overview.png)
 
@@ -25,7 +24,7 @@ flowchart TD
   subgraph VMS["Virtual Machines (virbr0 NAT - 192.168.122.0/24)"]
     DC["WinServer2022-DC<br/>192.168.122.200 (Static)<br/>AD DS & DNS (homelab.local)"]
     CLIENT["WinClient01<br/>Windows 11 Enterprise<br/>(Domain Joined)"]
-    LINUX["server01<br/>Ubuntu Server 24.04 LTS<br/>(OpenSSH)"]
+    LINUX["server01<br/>Ubuntu Server 24.04 LTS<br/>(OpenSSH / Docker Stacks)"]
   end
 
   HOST --> VMS
@@ -42,24 +41,29 @@ flowchart TD
 - **Physical Network Segmentation:** Isolated family, guest, and lab VLANs configured on OpenWrt
 - **Security & Privacy:** Policy routing through a Mullvad WireGuard tunnel, client isolation, and Quad9 upstream DNS
 - **Linux Paravirtualization:** Bare-metal Fedora host running KVM, QEMU, and `libvirt` with Red Hat VirtIO storage and network drivers
-- **Identity & Access Management:** Windows Server 2022 Active Directory Domain Controller (`homelab.local`) with internal DNS
+- **Identity & Access Management:** Windows Server 2022 Active Directory Domain Controller (`homelab.local`) with internal DNS forwarders
 - **Enterprise Workstation Management:** Provisioned and joined Windows 11 Enterprise client to Active Directory
-- **Troubleshooting:** Root-cause analysis and resolution of dynamic DHCP address collisions and APIPA fallback using native CLI tools
-- **Headless Linux Administration:** Ubuntu Server 24.04 LTS provisioned with OpenSSH for centralized NOC monitoring
+- **Synthetic NOC Monitoring:** Uptime Kuma probing Layer 3 (ICMP) and Layer 4 (TCP DNS/Modbus ports) across the virtual bridge network
+- **OT / Industrial Telemetry:** OpenPLC v3 soft-PLC container simulating Modbus TCP telemetry on port 502; frame dissection via Wireshark
+- **Service Desk Incident Management:** Ticket lifecycle triage, alarm correlation, and runbook resolution documentation in osTicket
+- **Systems Troubleshooting:** Non-disruptive online Linux LVM storage expansion (`lvextend`), API syntax updates, and dynamic IP collision resolution
 
 ## Status
 
-Active Directory domain infrastructure and KVM virtualization stack deployed. Next: deploying NOC monitoring services (Zabbix / Uptime Kuma) on `server01`.
+Active Directory domain services, KVM virtualization stack, synthetic monitoring, and OT telemetry simulation are fully operational. All services fully documented with repeatable setup and verification runbooks.
 
 ## Documentation
 
-- [KVM Hypervisor Setup](docs/kvm-hypervisor-setup.md)
+- [OT Telemetry, Modbus TCP & Incident Lifecycle](docs/ot-telemetry-openplc-modbus.md)
+- [Service Monitoring & Probing with Uptime Kuma](docs/service-monitoring-uptime-kuma.md)
 - [Active Directory & Workstation Deployment](docs/active-directory-setup.md)
-- [Router setup](docs/router-setup.md)
-- [DNS migration](docs/dns-migration.md)
-- [ISP modem replacement](docs/isp-modem-setup.md)
+- [KVM Hypervisor Setup](docs/kvm-hypervisor-setup.md)
+- [Router Setup & VLAN Segmentation](docs/router-setup.md)
+- [DNS Migration](docs/dns-migration.md)
+- [ISP Modem Replacement](docs/isp-modem-setup.md)
 
-## Build log
+## Build Log
+- 2026-10-15: Deployed containerized synthetic monitoring (Uptime Kuma) and industrial control simulation (OpenPLC v3) on `server01`. Performed live Linux LVM partition expansion (`lvextend`) under production disk constraints. Captured and dissected Modbus TCP MBAP headers and Function Code 03 query/response frames in Wireshark. Deployed osTicket and documented end-to-end incident triage and resolution runbook. [Monitoring setup](docs/service-monitoring-uptime-kuma.md) | [OT telemetry & ticketing](docs/ot-telemetry-openplc-modbus.md)
 - 2026-10-14: Migrated Dell AIO to Fedora Workstation host running native KVM/QEMU hypervisor. Provisioned Windows Server 2022 Active Directory Domain Controller (`homelab.local`), joined Windows 11 Enterprise client to domain, deployed headless Ubuntu Server 24.04 LTS, and resolved dynamic IP conflict via static subnet re-allocation. [KVM setup](docs/kvm-hypervisor-setup.md) | [AD setup](docs/active-directory-setup.md)
 - 2026-10-12: Home network segmentation complete. Lab host setup pending. My home setup now has three separate networks: Family, Guest, and Lab. [Router setup](docs/router-setup.md)
 - 2026-10-11: Updated DNS from Mullvad to Quad9. [DNS migration](docs/dns-migration.md)
