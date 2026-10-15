@@ -22,7 +22,7 @@ The goal is to model proactive operations center monitoring—detecting service 
 
 Monitoring principles in an IT Operations / NOC environment directly mirror control room alarm management in industrial plants:
 
-- **Field Transmitter Alarms Synthetic Probes:** In a DCS, transmitters continuously stream process variables against configured alarm limits. In IT, automated TCP/ICMP heartbeats continuously validate service state and latency boundaries.
+- **Field Transmitter -> Alarms -> Synthetic Probes:** In a DCS, transmitters continuously stream process variables against configured alarm limits. In IT, automated TCP/ICMP heartbeats continuously validate service state and latency boundaries.
 - **Alarm Banners Incident States:** When a port fails the TCP 3-way handshake or exceeds latency thresholds, the status flips to an incident state, initiating alert dispatching and triage.
 - **Shift Logs Uptime Metrics:** Continuous heartbeat tracking documents availability percentages, mean time between failures (MTBF), and mean time to resolution (MTTR).
 
