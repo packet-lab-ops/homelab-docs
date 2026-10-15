@@ -81,11 +81,11 @@ Standard emulated IDE/SATA controllers introduce unnecessary CPU overhead. Windo
 
 ## 5. Verification & Screenshots
 
-KVM hypervisor hardware specifications ![Windows Server Installation Step 1](windows_server_install_1.png)
+KVM hypervisor hardware specifications ![Windows Server Installation Step 1](images/windows_server_install_1.png)
 
-Paravirtualized Red Hat VirtIO storage driver loaded during OS install ![VirtIO Storage Driver Selected](03-virtio-storage-driver.png)
+Paravirtualized Red Hat VirtIO storage driver loaded during OS install ![VirtIO Storage Driver Selected](images/03-virtio-storage-driver.png)
 
-Complete multi-VM environment active on Fedora host	![Enterprise Lab Multi-VM Overview](05-enterprise-lab-overview.png)
+Complete multi-VM environment active on Fedora host	![Enterprise Lab Multi-VM Overview](images/05-enterprise-lab-overview.png)
 
 ## 6. Key Takeaways
 - Paravirtualization vs. Full Emulation: Implementing VirtIO drivers demonstrates how modern hypervisors maximize guest performance by bypassing emulated physical controller limits.

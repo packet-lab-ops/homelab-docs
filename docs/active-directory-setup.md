@@ -95,11 +95,11 @@ B. Machine Renaming & Domain Join
 
 ## 4. Verification & Screenshots
 
-Initial Server Manager baseline dashboard	![Windows Server Installation Step 1](windows_server_install_1.png)
+Initial Server Manager baseline dashboard	![Windows Server Installation Step 1](images/windows_server_install_1.png)
 
-Active Directory domain membership verified in System Properties ![Active Directory Computer Object](04-domain-computer-object.png)
+Active Directory domain membership verified in System Properties ![Active Directory Computer Object](images/04-domain-computer-object.png)
 
-Integrated enterprise lab overview (DC, Client, Linux Monitor)	![Enterprise Lab Overview](05-enterprise-lab-overview.png)
+Integrated enterprise lab overview (DC, Client, Linux Monitor)	![Enterprise Lab Overview](images/05-enterprise-lab-overview.png)
 
 
 ## 5. Technical Competencies Demonstrated

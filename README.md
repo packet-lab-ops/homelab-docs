@@ -2,7 +2,7 @@
 Hands-on infrastructure lab covering network segmentation, Linux KVM virtualization, and Active Directory Domain Services.
 
 
-![Enterprise Lab Overview](docs/05-enterprise-lab-overview.png)
+![Enterprise Lab Overview](docs/images/05-enterprise-lab-overview.png)
 
 ## Hardware
 - Dell Inspiron 23 AIO (Fedora Workstation host / KVM hypervisor)
