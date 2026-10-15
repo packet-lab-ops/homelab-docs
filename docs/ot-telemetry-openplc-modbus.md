@@ -77,13 +77,13 @@ To model structured IT/OT operations, an incident was logged and resolved follow
 - Logged root-cause resolution notes and updated ticket status to Resolved.
   
 ## 6. Verification & Screenshots
-Modbus TCP Packet Dissection
+### Modbus TCP Packet Dissection
 Wireshark frame analysis showing TCP port 502 transport, MBAP header fields, and Function Code 03 register query/response:
 
 Wireshark Modbus Dissection
 ![Wireshark Modbus Dissection](images/wireshark-modbus-dissection.png)
 
-Closed-Loop Incident Resolution
+### Closed-Loop Incident Resolution
 osTicket Staff Control Panel showing prioritized telemetry outage ticket, runbook execution notes, and resolution documentation:
 
 osTicket Incident Resolution
