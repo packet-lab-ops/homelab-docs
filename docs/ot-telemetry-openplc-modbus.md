@@ -8,11 +8,12 @@ This lab bridges operational technology (OT) and enterprise IT networking. It de
 ## 2. Lab Architecture & Data Flow
 
 ```mermaid
-flowchart LR
-    A[Fedora Hypervisor / Wireshark] -- "Modbus TCP Polling (Port 502)" --> B[virbr0 Bridge]
+flowchart TD
+    A[Fedora Hypervisor / Wireshark] -->|"Modbus TCP Polling (Port 502)"| B[virbr0 Bridge]
     B --> C[Ubuntu Server 01 - OpenPLC Runtime]
-    C -- "TCP Port 502 Probe" --> D[Uptime Kuma Monitor]
-    D -- "Incident Trigger" --> E[osTicket Service Desk]
+    C -->|"TCP Port 502 Probe"| D[Uptime Kuma Monitor]
+    D -->|"Incident Trigger"| E[osTicket Service Desk]
+
 ```
 - Runtime Target: OpenPLC container on server01 (192.168.122.31) listening on standard industrial Modbus TCP port 502.
 
