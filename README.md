@@ -6,7 +6,7 @@ Hands-on infrastructure and operations lab covering physical network segmentatio
 ## Hardware
 - Dell Inspiron 23 AIO (Fedora Workstation host / KVM hypervisor)
 - TP-Link Archer A7 running OpenWrt
-- Netgear CM600 cable modem
+- ARRIS SURFboard SB8200 DOCSIS 3.1 Cable Modem
 
 ## Network Architecture
 
@@ -14,7 +14,7 @@ Logical view: the OpenWrt router segments LAN, Guest, and an isolated lab networ
 
 ```mermaid
 flowchart TD
-  ISP["ISP / CM600 modem"] --> R["OpenWrt router"]
+  ISP["ISP / SB8200 modem"] --> R["OpenWrt router"]
   R --> LAN["LAN 192.168.1.0/24"]
   R --> GUEST["Guest 192.168.10.0/24<br/>client isolation on"]
   R --> LAB_NET["Lab VLAN 192.168.20.0/24"]
