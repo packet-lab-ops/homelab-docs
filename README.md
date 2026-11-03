@@ -14,26 +14,32 @@ Logical view: the OpenWrt router segments LAN, Guest, and an isolated lab networ
 
 ```mermaid
 flowchart TD
-  ISP["ISP / SB8200 modem"] --> R["OpenWrt router"]
-  R --> LAN["LAN 192.168.1.0/24"]
-  R --> GUEST["Guest 192.168.10.0/24<br/>client isolation on"]
-  R --> LAB_NET["Lab VLAN 192.168.20.0/24"]
+  INET["Internet / WAN"] <--> MODEM["ARRIS SB8200 Cable Modem"]
+  MODEM <--> R["OpenWrt Router<br/>• Policy Routing (Mullvad WireGuard)<br/>• Quad9 Secure DNS"]
 
-  LAB_NET --> HOST["Dell Inspiron 23 AIO<br/>(Fedora Host / KVM Hypervisor)"]
-  
-  subgraph VMS["Virtual Machines (virbr0 NAT - 192.168.122.0/24)"]
-    DC["WinServer2022-DC<br/>192.168.122.200 (Static)<br/>AD DS & DNS (homelab.local)"]
-    CLIENT["WinClient01<br/>Windows 11 Enterprise<br/>(Domain Joined)"]
-    LINUX["server01<br/>Ubuntu Server 24.04 LTS<br/>(OpenSSH / Docker Stacks)"]
+  subgraph SUBNETS["Internal Network Segmentation"]
+    LAN["LAN: 192.168.1.0/24<br/>• Trusted family devices<br/>• Direct WAN egress"]
+    GUEST["Guest: 192.168.10.0/24<br/>• Client isolation enabled<br/>• WireGuard policy routed"]
+    LAB_NET["Lab VLAN: 192.168.20.0/24<br/>• Isolated management segment<br/>• WireGuard policy routed"]
   end
 
-  HOST --> VMS
+  R --> LAN
+  R --> GUEST
+  R --> LAB_NET
 
-  LAN -->|"router admin access"| R
-  LAN -->|"direct, outside tunnel"| NET["Internet"]
-  GUEST --> VPN["Mullvad tunnel"]
-  LAB_NET --> VPN
-  VPN --> NET
+  LAB_NET --> HOST["Hypervisor Host: Dell Inspiron 23 AIO<br/>(Fedora Linux / KVM / QEMU / libvirt)"]
+
+  subgraph VIRT["Virtualization Lab (virbr0 NAT Bridge - 192.168.122.0/24)"]
+    direction TB
+    DC["WinServer2022-DC (192.168.122.200)<br/>AD DS & AD DNS (homelab.local)"]
+    CLIENT["WinClient01 (DHCP)<br/>Windows 11 Enterprise (Domain Joined)"]
+    LINUX["server01 (192.168.122.31)<br/>Ubuntu Server 24.04 LTS (Docker Stacks)"]
+
+    CLIENT -.->|"Domain Auth / DNS"| DC
+    LINUX -.->|"Synthetic L3/L4 Probes"| DC
+  end
+
+  HOST --> VIRT
 ```
 
 ## What This Shows
